@@ -1,4 +1,9 @@
+import {ToastContainer} from "react-toastify";
+import {useNavigate} from "react-router-dom";
+
 export const Register = () => {
+    const navigate = useNavigate();
+
     async function handleRegister(event) {
         event.preventDefault();
         const authDetail = {
@@ -10,12 +15,13 @@ export const Register = () => {
         const requestOptions = {
             method:"POST",
             headers:{"content-Type": application/json},
-            body: JSON.stringify()
+            body: JSON.stringify(authDetail)
         }
 
         const response = await fetch("http://localhost:8000/register", requestOptions);
 
         const data = await response.json();
+        data.accessToken ? navigate("/products") : toast.error(data);
         console.log(data);
         
     }
