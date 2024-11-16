@@ -4,20 +4,21 @@ import { useEffect, useState } from "react";
 import { Search } from "../Sections/Search";
 import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 
-export const Header = () => {
+export var Header = () => {
     const [dark, setDark] = useState(localStorage.getItem("dark") || false);
     const [searchSection, setSearchSection] = useState(false);
     const [dropdown, setDropdown] = useState(false);
+    const token = JSON.parse(sessionStorage.getItem("token"));
 
-    useEffect(() => {
-        localStorage.setItem("dark", dark);
+        useEffect(() => {
+            localStorage.setItem("dark", dark);
 
-        if (dark) {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    }, [dark]);
+            if (dark) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        }, [dark]);
 
     return (
         <header>
@@ -37,7 +38,7 @@ export const Header = () => {
                             </span>
                         </Link>
                         <span onClick={() => setDropdown(!dropdown)} className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
-                        {dropdown && <DropdownLoggedOut />}
+                        {dropdown && (token ? <DropdownLoggedIn setDropdown={setDropdown}/> : <DropdownLoggedOut setDropdown={setDropdown}/>)}
                     </div>
                 </div>
             </nav>
