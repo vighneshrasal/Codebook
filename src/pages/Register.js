@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
@@ -14,7 +14,7 @@ export const Register = () => {
 
     const requestOptions = {
       method: "POST",
-      headers: { "content-Type": "application / json" },
+      headers: { "content-Type": "application/json" },
       body: JSON.stringify(authDetail)
     }
 

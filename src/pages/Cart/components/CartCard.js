@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const CartCard = ({product}) => {
     return (
       <div className="flex flex-wrap justify-between border-b dark:border-slate-700 max-w-4xl m-auto p-2 mb-5 ">

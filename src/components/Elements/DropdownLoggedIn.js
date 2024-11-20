@@ -1,12 +1,12 @@
 import {Link, useNavigate} from "react-router-dom";
 
-export const DropdownLoggedIn = ({setDropDown}) => {
+export const DropdownLoggedIn = ({setDropdown}) => {
     const navigate = useNavigate();
 
     function handleLogOut(){
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("cbid");
-        setDropDown(false);
+        setDropdown(false);
         navigate("/");
     }
 
@@ -17,10 +17,10 @@ export const DropdownLoggedIn = ({setDropDown}) => {
         </div>
         <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
             <li>
-                <Link to="/products" onClick={() => setDropDown(false)} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All eBooks</Link>
+                <Link to="/products" onClick={() => setDropdown(false)} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All eBooks</Link>
             </li>
             <li>
-                <Link to="/dashboard" onClick={() => setDropDown(false)} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
+                <Link to="/dashboard" onClick={() => setDropdown(false)} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
             </li>
         </ul>
         <div className="py-1">
