@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react"
 import { Rating } from "../components/Elements/Rating";
 import { useParams } from "react-router-dom";
+import { useCart } from "../context";
 
 export const ProductDetail = () => {
   const { cartList, addToCart, removeFromCart } = useCart();

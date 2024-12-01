@@ -1,4 +1,4 @@
-import { useFilter } from "../../../context/filterContext";
+import { useFilter } from "../../../context/FilterContext";
 
 export const FilterBar = ({ setShow }) => {
   const { state, dispatch } = useFilter();

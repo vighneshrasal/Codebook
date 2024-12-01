@@ -1,6 +1,5 @@
-import { cartReducer } from "../reducers/cartReducers";
-
-const { createContext, useContext, useReducer } = require("react")
+import { createContext, useContext, useReducer } from "react";
+import { cartReducer } from "../reducers";
 
 const cartInitialState = {
     cartList: [],
@@ -56,8 +55,8 @@ export const CartProvider = ({children}) => {
         clearCart
     }
 
-    return(
-        <CartContext.Provider>
+    return (
+        <CartContext.Provider value={value}>
             {children}
         </CartContext.Provider>
     )
