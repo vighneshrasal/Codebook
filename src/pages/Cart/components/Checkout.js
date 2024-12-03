@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../../../context";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Checkout = ({ setCheckOut }) => {
     const { cartList, total, clearCart } = useCart();
@@ -23,29 +23,33 @@ export const Checkout = ({ setCheckOut }) => {
         getUser();
     }, []);
 
-    async function handleOrderSubmit(event){
+    async function handleOrderSubmit(event) {
         event.preventDefault();
 
-        const order = {
-            cartList: cartList,
-            amount_paid: total,
-            quantity: cartList.length,
-            user: {
-                name: event.target.name.value,
-                email: user.email,
-                id: user.id
+        try {
+            const order = {
+                cartList: cartList,
+                amount_paid: total,
+                quantity: cartList.length,
+                user: {
+                    name: event.target.name.value,
+                    email: user.email,
+                    id: user.id
+                }
             }
+
+            const response = await fetch("http://localhost:8000/660/orders", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                body: JSON.stringify(order)
+            });
+            const data = await response.json();
+
+            clearCart();
+            navigate("/order-summary", { state: { data: data, status: true } });
+        } catch (error) {
+            navigate("/order-summary", { state: { data: data, status: false } });
         }
-
-        const response = await fetch("http://localhost:8000/660/orders", {
-            method: "POST",
-            headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
-            body: JSON.stringify(order)
-        });
-        const data = await response.json();
-
-        clearCart();
-        navigate("/");
     }
 
     return (
